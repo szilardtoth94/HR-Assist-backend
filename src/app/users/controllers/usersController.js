@@ -1,6 +1,6 @@
 
-function getAllUser(req,res){
-    res.send("Hello all jobs page");
+function getAllUser(){
+    return ("Hello all jobs page");
 }
 
 function getUserById(req,res){

@@ -5,7 +5,10 @@ const userCtrl = require('../controllers/usersController')
 
 var router = function (routerOption) {
 
-    usersRouter.route('/').get(userCtrl.allUser);
+    usersRouter.route('/')
+        .get(function (req,res){
+           res.send(userCtrl.allUser());
+        });
 
     usersRouter.route('/:id').get(userCtrl.userById);
 
