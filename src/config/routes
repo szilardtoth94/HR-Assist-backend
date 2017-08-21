@@ -1,0 +1,9 @@
+const jobsRouter  = require('../modules/jobs/routes/jobsRoutes');
+const userRouter = require('../modules/jobs/routes/jobsRoutes');
+
+function initRoutes(app){
+    app.use('/api/jobs', jobsRouter());
+    app.use('/api/users', userRouter());
+}
+
+module.exports.init = initRoutes;
