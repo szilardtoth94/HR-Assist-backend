@@ -6,7 +6,7 @@ function initSequelize() {
         host: config.host,
         dialect: config.dialect,
         port:config.port,
-
+        freezeTableName: true,
         pool: {
             max: 5,
             min: 0,

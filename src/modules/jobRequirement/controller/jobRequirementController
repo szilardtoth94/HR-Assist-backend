@@ -1,0 +1,7 @@
+let JobRequirment= require('../model/jobRequirementModel');
+
+function getAllJobRequirment() {
+    return JobRequirment.findAll();
+}
+
+module.exports.getAllJobRequirment = getAllJobRequirment;
