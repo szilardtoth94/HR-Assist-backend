@@ -1,11 +1,21 @@
 let Jobs = require('../models/jobModel');
+let JobRequirment = require('../../jobRequirement/model/jobRequirementModel');
 
 function createJob(job) {
     return Jobs.create(job);
 }
 
 function getAllJobs() {
-    return Jobs.findAll();
+    Jobs.options.associate(JobRequirment);
+    JobRequirment.options.associate(Jobs);
+
+    return Jobs.findAll({
+            include: [{
+                model: JobRequirment,
+                as: 'job_requirments'
+            }]
+        }
+    );
 }
 
 function getJobById(jobId) {

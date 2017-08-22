@@ -18,7 +18,7 @@ let router = function (connection) {
                     res.status(400);
                     res.json({
                         success: false,
-                        data: error
+                        data: error.toString()
                     });
                 });
         })

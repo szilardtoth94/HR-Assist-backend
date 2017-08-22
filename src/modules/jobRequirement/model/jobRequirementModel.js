@@ -1,22 +1,10 @@
-const sequelize = require('../../../config/sequelize').init();
 const Sequelize = require('sequelize');
+const sequelize = require('../../../config/sequelize').init();
 const Job = require('../../jobs/models/jobModel');
 
 const JobRequirment = sequelize.define("job_requirments", {
-    id: {
-        type: Sequelize.INTEGER,
-        primaryKey: true,
-        validate: {
-            isInt: true,
-        }
-    },
-    job_id: {
-        type: Sequelize.INTEGER,
-        references:{
-            model:Job,
-            key:'id'
-        }
-    },
+
+
     description: {
         type: Sequelize.STRING(45),
         validate: {
@@ -30,7 +18,17 @@ const JobRequirment = sequelize.define("job_requirments", {
         }
     }
 }, {
-    timestamp: false
+    timestamp: false,
+    associate: function (Job) {
+        JobRequirment.belongsTo(Job, {
+            foreignKey: 'id'
+        })
+    }
+
 });
- Job.hasMany(JobRequirment);
+
+// JobRequirment.belongsTo(Job,{
+//     foreignKey:'job_id'
+// });
+
 module.exports = JobRequirment;
