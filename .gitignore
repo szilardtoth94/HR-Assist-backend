@@ -1,5 +1,5 @@
 .idea
 node_modules
-config/*
+config/config.js
 !config/*.sample
 *.log
