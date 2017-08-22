@@ -1,7 +1,6 @@
-'use strict';
 const Sequelize = require('sequelize');
 const sequelize = require('../../../config/sequelize').init();
-const JobRequirment = require('../../jobRequirement/model/jobRequirementModel');
+// const JobRequirment = require('../../jobRequirement/model/jobRequirementModel');
 
 const Jobs = sequelize.define("jobs", {
 
@@ -18,13 +17,13 @@ const Jobs = sequelize.define("jobs", {
         }
     },
     benefits: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(45),
         validate: {
             len: [0, 44]
         }
     },
     code: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(45),
         validate: {
             len: [0, 44]
         }
@@ -38,5 +37,9 @@ const Jobs = sequelize.define("jobs", {
     }
 
 });
+
+// Jobs.hasMany(JobRequirment,{
+//     foreignKey:'job_id'
+// });
 
 module.exports = Jobs;

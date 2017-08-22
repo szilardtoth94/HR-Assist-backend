@@ -10,10 +10,12 @@ function getAllJobs() {
     JobRequirment.options.associate(Jobs);
 
     return Jobs.findAll({
-            include: [{
-                model: JobRequirment,
-                as: 'job_requirments'
-            }]
+            include: [
+                {
+                    model: JobRequirment,
+                    as: 'job_requirments'
+                }
+            ]
         }
     );
 }

@@ -1,9 +1,11 @@
+
+'use strict';
 const Sequelize = require('sequelize');
 const sequelize = require('../../../config/sequelize').init();
 
-const Skills = sequelize.define("skills", {
+const UserRoles = sequelize.define("user_roles", {
 
-    name: {
+    code: {
         type: Sequelize.STRING(45),
         validate: {
             len: [0, 44]
@@ -11,17 +13,14 @@ const Skills = sequelize.define("skills", {
     },
     description: {
         type: Sequelize.STRING(45),
+        validate: {
+            len: [0, 44]
+        }
     }
 }, {
     timestamp: false,
-    // associate2: function (jobRequirement) {
-    //     console.log(Skills);
-    //     Skills.hasMany(jobRequirement, {
-    //         foreignKey: 'skills_id',
-    //     })
-    // }
+
 
 });
 
-
-module.exports = Skills;
+module.exports = UserRoles;
