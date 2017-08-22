@@ -1,18 +1,7 @@
+const User = require('../model/userModel');
 
 function getAllUser(){
-    return ("Hello all jobs page");
+    return  User.findAll();
 }
 
-function getUserById(req,res){
-    var userId = req.params.id;
-    res.send('Hello ' + userId +  ' user page from jobsRouter!');
-}
-
-function newUser(req,res){
-    console.log('name:',req.body.name)
-    res.send('OK');
-}
-
-module.exports.allUser = getAllUser;
-module.exports.userById = getUserById;
-module.exports.newUser =newUser;
+module.exports.getallUser = getAllUser;
