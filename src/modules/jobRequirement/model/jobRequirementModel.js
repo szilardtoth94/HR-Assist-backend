@@ -1,9 +1,7 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../../../config/sequelize').init();
-const Job = require('../../jobs/models/jobModel');
 
 const JobRequirment = sequelize.define("job_requirments", {
-
 
     description: {
         type: Sequelize.STRING(45),
@@ -11,24 +9,28 @@ const JobRequirment = sequelize.define("job_requirments", {
             len: [0, 44]
         }
     },
-    skills_id: {
-        type: Sequelize.INTEGER,
-        validate: {
-            isInt: true,
-        }
+    skills_id :{
+        type:Sequelize.INTEGER
     }
+
 }, {
     timestamp: false,
     associate: function (Job) {
         JobRequirment.belongsTo(Job, {
             foreignKey: 'id'
         })
+
+
+    },
+
+    associate2: function (Skills) {
+
+        JobRequirment.belongsTo(Skills, {
+           foreignKey: 'id',
+        })
     }
 
 });
 
-// JobRequirment.belongsTo(Job,{
-//     foreignKey:'job_id'
-// });
 
 module.exports = JobRequirment;

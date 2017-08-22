@@ -1,13 +1,13 @@
 const express = require('express');
-const jobRequirementRouter = express.Router();
+const skillsRouter = express.Router();
 
-const jobRequirementCtrl = require('../controller/jobRequirementController');
+const skillsCtrl = require('../controller/skillscontroller');
 
 let router = function (connection) {
 
-    jobRequirementRouter.route('/')
+    skillsRouter.route('/')
         .get(function (req, res) {
-            jobRequirementCtrl.getAllJobRequirment()
+            skillsCtrl.getAllSkills()
                 .then((result) => {
                     res.json({
                         success: true,
@@ -23,7 +23,7 @@ let router = function (connection) {
                 });
         });
 
-    return jobRequirementRouter;
+    return skillsRouter;
 };
 
 module.exports = router;

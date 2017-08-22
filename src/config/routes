@@ -1,11 +1,12 @@
 const jobsRouter  = require('../modules/jobs/routes/jobsRoutes');
 const userRouter = require('../modules/jobs/routes/jobsRoutes');
 const jobRequirementRouter =require('../modules/jobRequirement/routes/jobRequirementRoutes')
-
+const skillsRoutes =require('../modules/skils/routes/skillsRoutes');
 function initRoutes(app){
     app.use('/api/jobs', jobsRouter());
     app.use('/api/users', userRouter());
-    app.use('/api/requirements',jobRequirementRouter())
+    app.use('/api/requirements',jobRequirementRouter());
+    app.use('/api/skills',skillsRoutes());
 }
 
 module.exports.init = initRoutes;

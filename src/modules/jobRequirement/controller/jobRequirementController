@@ -1,14 +1,11 @@
 'use strict';
-let Job = require('../../jobs/models/jobModel');
+let Skills = require('../../skils/model/skillsModel');
 let JobRequirment= require('../model/jobRequirementModel');
 
 
 function getAllJobRequirment() {
-
-    // Job.options.associate(JobRequirment);
-    // JobRequirment.options.associate(Job);
-
-    return JobRequirment.findAll();
+    return JobRequirment.findAll(
+    );
 }
 
 module.exports.getAllJobRequirment = getAllJobRequirment;
