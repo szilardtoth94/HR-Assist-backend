@@ -1,10 +1,10 @@
 'use strict';
 const Sequelize = require('sequelize');
 const config = require('../../config/enviroments/config').sequelize;
-let sequalize= null;
+let sequalize = null;
 
 function initSequelize() {
-    if(null===sequalize) {
+    if (null === sequalize) {
         sequalize = new Sequelize(config.database, config.user, config.password, {
             host: config.host,
             dialect: config.dialect,
@@ -16,7 +16,8 @@ function initSequelize() {
                 idle: 10000
             },
             define: {
-                timestamps: false
+                timestamps: false,
+                freezeTableName: true,
             }
         });
 
@@ -32,4 +33,4 @@ function initSequelize() {
     return sequalize;
 }
 
-module.exports.init =initSequelize;
+module.exports.init = initSequelize;

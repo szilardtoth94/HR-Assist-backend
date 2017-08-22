@@ -1,14 +1,17 @@
-const jobsRouter  = require('../modules/jobs/routes/jobsRoutes');
+const jobsRouter = require('../modules/jobs/routes/jobsRoutes');
 const userRouter = require('../modules/users/routes/usersRoutes');
-const jobRequirementRouter =require('../modules/jobRequirement/routes/jobRequirementRoutes')
-const skillsRoutes =require('../modules/skils/routes/skillsRoutes');
-const userRolesRouter =require('../modules/usersRoles/routes/usersRolesRoutes');
-function initRoutes(app){
+const jobRequirementRouter = require('../modules/jobRequirement/routes/jobRequirementRoutes')
+const skillsRoutes = require('../modules/skils/routes/skillsRoutes');
+const userRolesRouter = require('../modules/usersRoles/routes/usersRolesRoutes');
+const personalInfoRoutes = require('../modules/personalInfo/routes/personalInfoRoutes')
+
+function initRoutes(app) {
     app.use('/api/jobs', jobsRouter());
     app.use('/api/users', userRouter());
     app.use('/api/userroles', userRolesRouter());
-    app.use('/api/requirements',jobRequirementRouter());
-    app.use('/api/skills',skillsRoutes());
+    app.use('/api/requirements', jobRequirementRouter());
+    app.use('/api/skills', skillsRoutes());
+    app.use('/api/persinfo', personalInfoRoutes());
 }
 
 module.exports.init = initRoutes;

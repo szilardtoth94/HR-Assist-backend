@@ -1,24 +1,22 @@
-'use strict';
 const Sequelize = require('sequelize');
 const sequelize = require('../../../config/sequelize').init();
-const UserRoles = require('../../usersRoles/model/userRolesModel');
 
-const User = sequelize.define("users", {
+const PersonalInfo = sequelize.define("personal_info", {
 
-    username: {
+    first_name: {
         type: Sequelize.STRING(45),
         validate: {
             len: [0, 44]
         }
     },
-    password: {
+    last_name: {
         type: Sequelize.STRING(45),
         validate: {
             len: [0, 44]
         }
     },
 
-    last_login: {
+    description: {
         type: Sequelize.DATE
     }
 }, {
@@ -27,7 +25,4 @@ const User = sequelize.define("users", {
 
 });
 
-User.belongsTo(UserRoles, {
-    foreignKey: 'user_role_id'
-});
-module.exports = User;
+module.exports = PersonalInfo;

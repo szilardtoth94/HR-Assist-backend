@@ -1,8 +1,8 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../../../config/sequelize').init();
 
-const Skills =require('../../skils/model/skillsModel');
-const Jobs =require('../../jobs/models/jobModel');
+const Skills = require('../../skils/model/skillsModel');
+const Jobs = require('../../jobs/models/jobModel');
 
 const JobRequirment = sequelize.define("job_requirments", {
 
@@ -30,12 +30,12 @@ const JobRequirment = sequelize.define("job_requirments", {
     // }
 
 });
-JobRequirment.belongsTo(Skills,{
-    foreignKey:'skills_id'
+JobRequirment.belongsTo(Skills, {
+    foreignKey: 'skills_id'
 });
 
-JobRequirment.belongsTo(Jobs,{
-    foreignKey:'job_id'
+JobRequirment.belongsTo(Jobs, {
+    foreignKey: 'job_id'
 });
 
 
