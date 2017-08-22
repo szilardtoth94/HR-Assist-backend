@@ -3,8 +3,8 @@ const userRouter = require('../modules/users/routes/usersRoutes');
 const jobRequirementRouter = require('../modules/jobRequirement/routes/jobRequirementRoutes')
 const skillsRoutes = require('../modules/skils/routes/skillsRoutes');
 const userRolesRouter = require('../modules/usersRoles/routes/usersRolesRoutes');
-const personalInfoRoutes = require('../modules/personalInfo/routes/personalInfoRoutes')
-
+const personalInfoRoutes = require('../modules/personalInfo/routes/personalInfoRoutes');
+const userEducationRoutes =require('../modules/usersEducation/routes/usersEducationRoutes');
 function initRoutes(app) {
     app.use('/api/jobs', jobsRouter());
     app.use('/api/users', userRouter());
@@ -12,6 +12,7 @@ function initRoutes(app) {
     app.use('/api/requirements', jobRequirementRouter());
     app.use('/api/skills', skillsRoutes());
     app.use('/api/persinfo', personalInfoRoutes());
+    app.use('/api/education',userEducationRoutes());
 }
 
 module.exports.init = initRoutes;
