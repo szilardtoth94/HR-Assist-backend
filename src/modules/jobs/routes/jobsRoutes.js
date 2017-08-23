@@ -10,7 +10,7 @@ let router = function (connection) {
             jobsCtrl.allJobs()
                 .then((result) => {
                     res.json({
-                        succes: true,
+                        success: true,
                         data: result
                     });
                 })

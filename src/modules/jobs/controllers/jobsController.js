@@ -1,19 +1,22 @@
 let Jobs = require('../models/jobModel');
 let JobRequirment = require('../../jobRequirement/model/jobRequirementModel');
-
+const Skill = require('../../skils/model/skillsModel');
 function createJob(job) {
     return Jobs.create(job);
 }
 
 function getAllJobs() {
-    Jobs.options.associate(JobRequirment);
-    JobRequirment.options.associate(Jobs);
+    return Jobs.findAll();
+}
 
+function getAllJobsWithRequirements() {
     return Jobs.findAll({
             include: [
                 {
-                    model: JobRequirment,
-                    as: 'job_requirments'
+                    model: JobRequirment
+                },
+                {
+                    model:Skill
                 }
             ]
         }
@@ -45,3 +48,4 @@ module.exports.jobById = getJobById
 module.exports.createJob = createJob;
 module.exports.deleteJob = deleteJob;
 module.exports.updateJob = updateJob;
+module.exports.getAllJobsWithRequirements=getAllJobsWithRequirements;

@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../../../config/sequelize').init();
-// const JobRequirment = require('../../jobRequirement/model/jobRequirementModel');
+const Skills =require('../../skils/model/skillsModel');
 
 const Jobs = sequelize.define("jobs", {
 
@@ -30,16 +30,17 @@ const Jobs = sequelize.define("jobs", {
     }
 }, {
     timestamp: false,
-    associate: function (JobRequirment) {
-        Jobs.hasMany(JobRequirment, {
-            foreignKey: 'job_id',
-        })
-    }
 
 });
+Jobs.belongsToMany(Skills,{
+    through:'job_requirments',
+    foreignKey:'job_id'
+});
 
-// Jobs.hasMany(JobRequirment,{
-//     foreignKey:'job_id'
-// });
+Skills.belongsToMany(Jobs,{
+    through:'job_requirments',
+    foreignKey:'skills_id'
+});
+
 
 module.exports = Jobs;

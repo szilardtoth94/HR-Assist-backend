@@ -9,8 +9,9 @@ let router = function (connection) {
         .get(function (req, res) {
             persInfoCtrl.getAllPersonalInfo()
                 .then((result) => {
+                    res.header("Access-Control-Allow-Origin", "*");
                     res.json({
-                        succes: true,
+                        success: true,
                         data: result
                     });
                 })
@@ -63,24 +64,24 @@ let router = function (connection) {
     //     });
     //
     //
-    // jobsRouter.route('/:id')
-    //     .get(function (req, res) {
-    //         let jobId = req.params.id;
-    //         jobsCtrl.jobById(jobId)
-    //             .then((result) => {
-    //                 res.json({
-    //                     success: true,
-    //                     data: result
-    //                 });
-    //             })
-    //             .catch(function (error) {
-    //                 res.status(400);
-    //                 res.json({
-    //                     success: false,
-    //                     data: error
-    //                 })
-    //             })
-    //     })
+    persInfoRouter.route('/:id')
+        .get(function (req, res) {
+            let persInfId = req.params.id;
+            persInfoCtrl.getPersonalInfoById(persInfId)
+                .then((result) => {
+                    res.json({
+                        success: true,
+                        data: result
+                    });
+                })
+                .catch(function (error) {
+                    res.status(400);
+                    res.json({
+                        success: false,
+                        data: error.toString()
+                    })
+                })
+        });
     //     .delete(function (req, res) {
     //         let jobId = req.params.id;
     //         jobsCtrl.deleteJob(jobId)
@@ -102,8 +103,26 @@ let router = function (connection) {
     //     });
 
 
+    persInfoRouter.route('/all/:id')
+        .get(function (req, res) {
+            let persInfId = req.params.id;
+            persInfoCtrl.getAllPersonalInfoById(persInfId)
+                .then((result) => {
+                    res.json({
+                        success: true,
+                        data: result
+                    });
+                })
+                .catch(function (error) {
+                    res.status(400);
+                    res.json({
+                        success: false,
+                        data: error.toString()
+                    })
+                })
+        });
     return persInfoRouter;
-    ;
+
 };
 
 module.exports = router;

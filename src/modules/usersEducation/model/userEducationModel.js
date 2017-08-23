@@ -4,13 +4,15 @@ const sequelize = require('../../../config/sequelize').init();
 
 const UserEducation = sequelize.define("user_education", {
 
-    scool_name: {
+    schoolName: {
+        field:'scool_name',
         type: Sequelize.STRING(45),
         validate: {
             len: [0, 44]
         }
     },
-    graduated_year: {
+    graduatedYear: {
+        field:'graduated_year',
         type: Sequelize.INTEGER
     },
 
