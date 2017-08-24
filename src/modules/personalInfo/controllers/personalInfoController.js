@@ -2,6 +2,8 @@ const PersonalInfo = require('../model/personalInfoModel');
 const User = require('../../users/model/userModel');
 const Education = require('../../usersEducation/model/userEducationModel');
 const WorkExperience = require('../../userWorkExperience/model/userWorExperienceModel');
+const Skills = require('../../skils/model/skillsModel');
+
 function getAllPersonalInfo() {
     return PersonalInfo.findAll();
 }
@@ -15,11 +17,15 @@ function getAllPersonalInfoById(id) {
         include: [
             {
                 model: Education,
-                as:'userEducation'
+                as: 'userEducation'
             },
             {
-                model:WorkExperience,
-                as:'workExperience'
+                model: WorkExperience,
+                as: 'workExperience'
+            },
+            {
+                model: Skills,
+                as: 'skills'
             }
         ]
     });
