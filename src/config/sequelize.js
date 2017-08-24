@@ -18,6 +18,7 @@ function initSequelize() {
             define: {
                 timestamps: false,
                 freezeTableName: true,
+                underscored:true,
             }
         });
 

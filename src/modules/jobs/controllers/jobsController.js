@@ -12,9 +12,7 @@ function getAllJobs() {
 function getAllJobsWithRequirements() {
     return Jobs.findAll({
             include: [
-                {
-                    model: JobRequirment
-                },
+
                 {
                     model:Skill
                 }

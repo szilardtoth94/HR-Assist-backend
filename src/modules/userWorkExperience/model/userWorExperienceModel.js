@@ -4,7 +4,8 @@ const sequelize = require('../../../config/sequelize').init();
 
 const UserWorkExperience = sequelize.define("user_work_experience", {
 
-    company_name: {
+    companyName: {
+        field:'company_name',
         type: Sequelize.STRING(45),
         validate: {
             len: [0, 44]
@@ -17,11 +18,13 @@ const UserWorkExperience = sequelize.define("user_work_experience", {
         }
     },
 
-    start_date: {
+    startDate: {
+        field:'start_date',
         type: Sequelize.DATE
     },
 
-    end_date: {
+    endDate: {
+        field:'end_date',
         type: Sequelize.DATE
     }
 }, {

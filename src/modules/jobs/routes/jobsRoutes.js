@@ -7,7 +7,7 @@ let router = function (connection) {
 
     jobsRouter.route('/')
         .get(function (req, res) {
-            jobsCtrl.allJobs()
+            jobsCtrl.getAllJobsWithRequirements()
                 .then((result) => {
                     res.json({
                         success: true,

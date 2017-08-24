@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../../../config/sequelize').init();
 const Education = require('../../usersEducation/model/userEducationModel');
-
+const WorkExperience =require('../../userWorkExperience/model/userWorExperienceModel')
 const PersonalInfo = sequelize.define("personal_info", {
     firstName: {
         type: Sequelize.STRING(45),
@@ -27,7 +27,19 @@ const PersonalInfo = sequelize.define("personal_info", {
 });
 
 PersonalInfo.hasMany(Education,{
-    foreignKey:'personal_info_id'
+    foreignKey:{
+        name:'personalInfoId',
+        field:'personal_info_id'
+    },
+    as:'userEducation'
+});
+
+PersonalInfo.hasMany(WorkExperience,{
+    foreignKey:{
+        name:'personInfoId',
+        field:'personal_info_id'
+    },
+    as:'workExperience'
 });
 
 module.exports = PersonalInfo;
