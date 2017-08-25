@@ -1,5 +1,4 @@
 let Jobs = require('../models/jobModel');
-let JobRequirment = require('../../jobRequirement/model/jobRequirementModel');
 const Skill = require('../../skils/model/skillsModel');
 function createJob(job) {
     return Jobs.create(job);

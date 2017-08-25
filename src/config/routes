@@ -8,6 +8,18 @@ const userEducationRoutes =require('../modules/usersEducation/routes/usersEducat
 const userWorkExperience = require('../modules/userWorkExperience/routes/userWorkExperienceRoutes');
 
 function initRoutes(app) {
+    // app.use(function (req, res, next) {
+    //     console.log(req.headers);
+    //     if (req.headers && req.headers.authorizationxyz) {
+    //         next()
+    //     }
+    //     else {
+    //         res.status(400);
+    //         res.send('None shall pass');
+    //     }
+    // });
+
+
     app.use('/api/jobs', jobsRouter());
     app.use('/api/users', userRouter());
     app.use('/api/userroles', userRolesRouter());

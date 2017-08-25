@@ -6,6 +6,27 @@ const persInfoCtrl = require('../controllers/personalInfoController');
 let router = function (connection) {
 
     persInfoRouter.route('/')
+        .post(function (req, res) {
+            let job = req.body;
+            console.log(job);
+            persInfoCtrl.createPersonalInfo(job)
+                .then((result) => {
+                    res.header("Access-Control-Allow-Origin", "*");
+                    res.json({
+                        success: true,
+                        data: result
+                    });
+                })
+                .catch(function (error) {
+                    res.status(400);
+                    res.json({
+                        success: false,
+                        data: error.toString()
+                    });
+                });
+        });
+
+    persInfoRouter.route('/')
         .get(function (req, res) {
             persInfoCtrl.getAllPersonalInfo()
                 .then((result) => {
@@ -43,7 +64,6 @@ let router = function (connection) {
                 })
         });
 
-
     persInfoRouter.route('/all/:id')
         .get(function (req, res) {
             let persInfId = req.params.id;
@@ -61,6 +81,27 @@ let router = function (connection) {
                         data: error.toString()
                     })
                 })
+        });
+
+    persInfoRouter.route('/:id')
+        .delete(function (req, res) {
+            let userId = req.params.id;
+            persInfoCtrl.deletePersonalInfo(userId)
+                .then(result => {
+                    res.json({
+                        success: true,
+                        data: result
+                    })
+                })
+                .catch(function (error) {
+                    res.status(400);
+                    res.json({
+                        success: false,
+                        data: error
+                    })
+
+                })
+
         });
     return persInfoRouter;
 
