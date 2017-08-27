@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../../../config/sequelize').init();
-const Skills =require('../../skils/model/skillsModel');
+const Skills =require('../../skils/model/skills');
 
 const Jobs = sequelize.define("jobs", {
 

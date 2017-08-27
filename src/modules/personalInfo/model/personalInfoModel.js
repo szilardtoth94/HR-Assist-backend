@@ -3,7 +3,7 @@ const sequelize = require('../../../config/sequelize').init();
 const Education = require('../../usersEducation/model/userEducationModel');
 const WorkExperience = require('../../userWorkExperience/model/userWorExperienceModel');
 const User  = require('../../users/model/userModel');
-const Skills = require('../../skils/model/skillsModel');
+const Skills = require('../../skils/model/skills');
 
 const PersonalInfo = sequelize.define("personal_info", {
     firstName: {
@@ -45,6 +45,7 @@ PersonalInfo.hasMany(WorkExperience, {
         field: 'personal_info_id'
     },
     onDelete: 'cascade',
+    onUpdate: 'cascade',
     as: 'workExperience'
 });
 
@@ -52,12 +53,16 @@ PersonalInfo.belongsToMany(Skills, {
     through: 'user_skills',
     foreignKey: 'personal_info_id',
     onDelete: 'cascade',
+    onUpdate: 'cascade'
+
 });
 
 Skills.belongsToMany(PersonalInfo, {
     through: 'user_skills',
     foreignKey: 'skills_id',
     onDelete: 'cascade',
+    onUpdate: 'cascade'
+
 });
 
 

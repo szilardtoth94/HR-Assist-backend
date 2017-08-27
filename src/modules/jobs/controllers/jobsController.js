@@ -1,5 +1,6 @@
 let Jobs = require('../models/jobModel');
-const Skill = require('../../skils/model/skillsModel');
+const Skill = require('../../skils/model/skills');
+
 function createJob(job) {
     return Jobs.create(job);
 }

@@ -1,5 +1,5 @@
 'use strict';
-let Skills = require('../../skils/model/skillsModel');
+let Skills = require('../../skils/model/skills');
 let JobRequirment = require('../model/jobRequirementModel');
 let Jobs = require('../../jobs/models/jobModel');
 

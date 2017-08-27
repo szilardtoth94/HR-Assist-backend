@@ -2,7 +2,7 @@ const PersonalInfo = require('../model/personalInfoModel');
 const User = require('../../users/model/userModel');
 const Education = require('../../usersEducation/model/userEducationModel');
 const WorkExperience = require('../../userWorkExperience/model/userWorExperienceModel');
-const Skills = require('../../skils/model/skillsModel');
+const Skills = require('../../skils/model/skills');
 
 function createPersonalInfo(persInf) {
     return PersonalInfo.create(persInf,
@@ -26,7 +26,13 @@ function getAllPersonalInfo() {
 }
 
 function getPersonalInfoById(id) {
-    return PersonalInfo.findById(id);
+    return PersonalInfo.findById(id, {
+        include: [
+            {
+                model: User,
+                as: 'user'
+            }]
+    });
 }
 
 function getAllPersonalInfoById(id) {
@@ -48,10 +54,30 @@ function getAllPersonalInfoById(id) {
                 model: Skills,
                 as: 'skills',
                 // attributes: { exclude: ['user_skills'] }
+            },
+            {
+                model: User,
+                as: 'user'
             }
         ],
 
     });
+}
+
+function editPersonalInfo(persInf, userId) {
+
+    return PersonalInfo.update(persInf,
+        {
+            where: {
+                id: userId
+            },
+            include: [{
+                    model: User,
+                    as: 'user'
+                }]
+
+
+        });
 }
 
 function deletePersonalInfo(userId) {
@@ -65,8 +91,9 @@ function deletePersonalInfo(userId) {
 }
 
 
+module.exports.createPersonalInfo = createPersonalInfo;
 module.exports.getAllPersonalInfo = getAllPersonalInfo;
 module.exports.getPersonalInfoById = getPersonalInfoById;
 module.exports.getAllPersonalInfoById = getAllPersonalInfoById;
+module.exports.editPersonalInfo = editPersonalInfo;
 module.exports.deletePersonalInfo = deletePersonalInfo;
-module.exports.createPersonalInfo = createPersonalInfo;

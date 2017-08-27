@@ -7,7 +7,7 @@ let router = function (connection) {
 
     userWorkExperienceRouter.route('/')
         .get(function (req, res) {
-            userWorkExperienceCtrl.getAllUserWorkEperience()
+            userWorkExperienceCtrl.getAllUserWorkExperience()
                 .then((result) => {
                     res.json({
                         succes: true,
@@ -22,84 +22,82 @@ let router = function (connection) {
                     });
                 });
         })
-    //     .post(function (req, res) {
-    //         let job = req.body;
-    //         console.log(req.body);
-    //         userCtrl.createJob(job)
-    //             .then((result) => {
-    //                 res.json({
-    //                     success: true,
-    //                     data: result
-    //                 })
-    //             })
-    //             .catch(function (error) {
-    //                 res.status(400);
-    //                 res.json({
-    //                     success: false,
-    //                     data: error
-    //                 })
-    //
-    //             })
-    //     })
-    //
-    //     .put(function (req, res) {
-    //         let job =req.body;
-    //         jobsCtrl.updateJob(job)
-    //             .then(result => {
-    //                 res.json({
-    //                     success: true,
-    //                     data: result
-    //                 })
-    //             })
-    //             .catch(function (error) {
-    //                 res.status(400);
-    //                 res.json({
-    //                     success: false,
-    //                     data: error
-    //                 })
-    //
-    //             })
-    //
-    //     });
-    //
-    //
-    // jobsRouter.route('/:id')
-    //     .get(function (req, res) {
-    //         let jobId = req.params.id;
-    //         jobsCtrl.jobById(jobId)
-    //             .then((result) => {
-    //                 res.json({
-    //                     success: true,
-    //                     data: result
-    //                 });
-    //             })
-    //             .catch(function (error) {
-    //                 res.status(400);
-    //                 res.json({
-    //                     success: false,
-    //                     data: error
-    //                 })
-    //             })
-    //     })
-    //     .delete(function (req, res) {
-    //         let jobId = req.params.id;
-    //         jobsCtrl.deleteJob(jobId)
-    //             .then(result => {
-    //                 res.json({
-    //                     success: true,
-    //                     data: result
-    //                 })
-    //             })
-    //             .catch(function (error) {
-    //                 res.status(400);
-    //                 res.json({
-    //                     success: false,
-    //                     data: error
-    //                 })
-    //
-    //             })
-    //
-    //     });
+        .post(function (req, res) {
+            let userWorkExperience = req.body;
+            userWorkExperienceCtrl.createUserWorkExperience(userWorkExperience)
+                .then((result) => {
+                    res.json({
+                        success: true,
+                        data: result
+                    })
+                })
+                .catch(function (error) {
+                    res.status(400);
+                    res.json({
+                        success: false,
+                        data: error
+                    })
+
+                })
+        });
+
+
+    userWorkExperienceRouter.route('/:id')
+        .get(function (req, res) {
+            let workExperienceId = req.params.id;
+            userWorkExperienceCtrl.getUserWorkExperienceById(workExperienceId)
+                .then((result) => {
+                    res.json({
+                        success: true,
+                        data: result
+                    });
+                })
+                .catch(function (error) {
+                    res.status(400);
+                    res.json({
+                        success: false,
+                        data: error
+                    })
+                })
+        })
+    .put(function (req, res) {
+        let workExperience =req.body;
+        userWorkExperienceCtrl.updateUserWorkExperience(workExperience,req.params.id)
+            .then(result => {
+                res.json({
+                    success: true,
+                    data: result
+                })
+            })
+            .catch(function (error) {
+                res.status(400);
+                res.json({
+                    success: false,
+                    data: error
+                })
+
+            })
+
+    })
+        .delete(function (req, res) {
+            let userWorkExperienceId = req.params.id;
+            userWorkExperienceCtrl.deleteUserWorkExperience(userWorkExperienceId)
+                .then(result => {
+                    res.json({
+                        success: true,
+                        data: result
+                    })
+                })
+                .catch(function (error) {
+                    res.status(400);
+                    res.json({
+                        success: false,
+                        data: error
+                    })
+
+                })
+
+        });
 
 
     return userWorkExperienceRouter;

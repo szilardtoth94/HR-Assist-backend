@@ -1,5 +1,6 @@
-let Skills = require('../model/skillsModel');
+let Skills = require('../model/skills');
 let JobRequirment = require('../../jobRequirement/model/jobRequirementModel');
+
 
 function getAllSkills() {
     // Skills.options.associate2(JobRequirment);

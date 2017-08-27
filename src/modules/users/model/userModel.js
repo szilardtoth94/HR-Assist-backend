@@ -7,7 +7,7 @@ const PersonalInfo = require('../../personalInfo/model/personalInfoModel');
 const User = sequelize.define("users", {
 
     userName: {
-        field:'username',
+        field: 'username',
         type: Sequelize.STRING(45),
         validate: {
             len: [0, 44]
@@ -32,10 +32,11 @@ const User = sequelize.define("users", {
 
 User.belongsTo(UserRoles, {
     foreignKey: {
-        name :'userRoleId',
-        field:'user_role_id'
+        name: 'userRoleId',
+        field: 'user_role_id'
     },
     onDelete: 'cascade',
+    onUpdate: 'cascade'
 });
 
 
@@ -45,6 +46,8 @@ User.hasOne(PersonalInfo, {
         field: 'users_id'
     },
     onDelete: 'cascade',
+    onUpdate: 'cascade'
+
 });
 PersonalInfo.belongsTo(User, {
     foreignKey: {
@@ -52,6 +55,8 @@ PersonalInfo.belongsTo(User, {
         field: 'users_id'
     },
     onDelete: 'cascade',
+    onUpdate: 'cascade'
+
 });
 
 
