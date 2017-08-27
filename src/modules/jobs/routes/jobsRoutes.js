@@ -60,7 +60,7 @@ let router = function (connection) {
         })
         .put(function (req, res) {
             let job = req.body;
-            jobsCtrl.updateJob(job)
+            jobsCtrl.updateJob(req.params.id,job)
                 .then(result => {
                     res.json({
                         success: true,

@@ -20,10 +20,10 @@ function getJobById(jobId) {
     });
 }
 
-function updateJob(job) {
+function updateJob(jobId,job) {
     return Jobs.update(job, {
         where: {
-            id: job.id
+            id: jobId
         }
     });
 }
