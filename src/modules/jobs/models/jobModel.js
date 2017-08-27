@@ -26,12 +26,23 @@ const Jobs = sequelize.define("jobs", {
 
 Jobs.belongsToMany(Skills, {
     through: 'job_requirments',
-    foreignKey: 'job_id'
+    foreignKey: {
+        name: 'jobId',
+        field: 'job_id'
+    },
+    onDelete: 'cascade',
+    onUpdate: 'cascade'
+
 });
 
 Skills.belongsToMany(Jobs, {
     through: 'job_requirments',
-    foreignKey: 'skills_id'
+    foreignKey: {
+        name: 'skillsId',
+        field: 'skills_id'
+    },
+    onDelete: 'cascade',
+    onUpdate: 'cascade'
 });
 
 module.exports = Jobs;

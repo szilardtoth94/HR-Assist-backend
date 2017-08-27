@@ -5,7 +5,7 @@ const jobsCtrl = require('../controllers/jobsController');
 let router = function (connection) {
     jobsRouter.route('/')
         .get(function (req, res) {
-            jobsCtrl.getAllJobsWithRequirements()
+            jobsCtrl.getAllJobs()
                 .then((result) => {
                     res.json({
                         success: true,
@@ -38,25 +38,6 @@ let router = function (connection) {
                     })
 
                 })
-        })
-        .put(function (req, res) {
-            let job = req.body;
-            jobsCtrl.updateJob(job)
-                .then(result => {
-                    res.json({
-                        success: true,
-                        data: result
-                    })
-                })
-                .catch(function (error) {
-                    res.status(400);
-                    res.json({
-                        success: false,
-                        data: error
-                    })
-
-                })
-
         });
 
     jobsRouter.route('/:id')
@@ -77,6 +58,25 @@ let router = function (connection) {
                     })
                 })
         })
+        .put(function (req, res) {
+            let job = req.body;
+            jobsCtrl.updateJob(job)
+                .then(result => {
+                    res.json({
+                        success: true,
+                        data: result
+                    })
+                })
+                .catch(function (error) {
+                    res.status(400);
+                    res.json({
+                        success: false,
+                        data: error
+                    })
+
+                })
+
+        })
         .delete(function (req, res) {
             let jobId = req.params.id;
             jobsCtrl.deleteJob(jobId)
@@ -92,9 +92,9 @@ let router = function (connection) {
                         success: false,
                         data: error
                     })
-
                 })
         });
+
     return jobsRouter;
 };
 

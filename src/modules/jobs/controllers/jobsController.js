@@ -9,20 +9,15 @@ function getAllJobs() {
     return Jobs.findAll();
 }
 
-function getAllJobsWithRequirements() {
-    return Jobs.findAll({
-            include: [
-
-                {
-                    model: Skill
-                }
-            ]
-        }
-    );
-}
-
 function getJobById(jobId) {
-    return Jobs.findById(jobId);
+    return Jobs.findById(jobId,{
+        include: [
+
+            {
+                model: Skill
+            }
+        ]
+    });
 }
 
 function updateJob(job) {
@@ -46,4 +41,3 @@ module.exports.jobById = getJobById;
 module.exports.createJob = createJob;
 module.exports.updateJob = updateJob;
 module.exports.deleteJob = deleteJob;
-module.exports.getAllJobsWithRequirements = getAllJobsWithRequirements;

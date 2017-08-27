@@ -1,18 +1,32 @@
 'use strict';
-let Skills = require('../../skils/model/skills');
 let JobRequirement = require('../model/jobRequirementModel');
-let Jobs = require('../../jobs/models/jobModel');
-function getAllJobRequirement() {
-    return JobRequirement.findAll(
 
-        {
-            include: [{
-                model: Jobs
-            }, {
-                model: Skills
-            }]
-        }
-    );
+function createJobSkills(jobSkill) {
+    return JobRequirement.create(jobSkill);
 }
 
+function getJobSkillsByPersId(userId) {
+    return JobRequirement.findAll({
+        where: {
+            jobId: userId
+        }
+    });
+}
+
+function getAllJobRequirement() {
+    return JobRequirement.findAll();
+}
+
+function deleteJobSkill(jobSkillId) {
+    console.log(jobSkillId);
+    return JobRequirement.destroy({
+        where: {
+            id: jobSkillId
+        },
+    });
+}
+
+module.exports.createJobSkills = createJobSkills;
+module.exports.getJobSkillsByPersId = getJobSkillsByPersId;
 module.exports.getAllJobRequirment = getAllJobRequirement;
+module.exports.deleteJobSkill = deleteJobSkill;
