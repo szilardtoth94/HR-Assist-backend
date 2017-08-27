@@ -8,4 +8,15 @@ function getAllUser() {
         }
     });
 }
+
+function logIn(username, password) {
+    return User.findOne({
+        where: {
+            userName: username,
+            password: password
+        }
+    })
+}
+
 module.exports.getallUser = getAllUser;
+module.exports.logIn = logIn;

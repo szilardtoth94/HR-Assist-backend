@@ -8,7 +8,7 @@ const router = function (connection) {
             userCtrl.getallUser()
                 .then((result) => {
                     res.json({
-                        succes: true,
+                        success: true,
                         data: result
                     });
                 })
@@ -19,7 +19,23 @@ const router = function (connection) {
                         data: error.toString()
                     });
                 });
-        });
+        })
+        .post(function (req, res) {
+            userCtrl.logIn(req.body.userName,req.body.password)
+                .then((result) => {
+                    res.json({
+                        success: true,
+                        data: result
+                    });
+                })
+                .catch(function (error) {
+                    res.status(400);
+                    res.json({
+                        success: false,
+                        data: error.toString()
+                    });
+                });
+        })
 
     return userRouter;
 };
