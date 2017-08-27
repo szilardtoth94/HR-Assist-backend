@@ -8,6 +8,4 @@ function getAllUser() {
         }
     });
 }
-
-
 module.exports.getallUser = getAllUser;

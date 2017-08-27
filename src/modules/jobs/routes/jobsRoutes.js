@@ -1,10 +1,8 @@
 const express = require('express');
 const jobsRouter = express.Router();
-
 const jobsCtrl = require('../controllers/jobsController');
 
 let router = function (connection) {
-
     jobsRouter.route('/')
         .get(function (req, res) {
             jobsCtrl.getAllJobsWithRequirements()
@@ -41,7 +39,6 @@ let router = function (connection) {
 
                 })
         })
-
         .put(function (req, res) {
             let job = req.body;
             jobsCtrl.updateJob(job)
@@ -61,7 +58,6 @@ let router = function (connection) {
                 })
 
         });
-
 
     jobsRouter.route('/:id')
         .get(function (req, res) {
@@ -98,10 +94,7 @@ let router = function (connection) {
                     })
 
                 })
-
         });
-
-
     return jobsRouter;
 };
 

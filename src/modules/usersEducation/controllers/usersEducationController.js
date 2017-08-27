@@ -20,7 +20,6 @@ function updateEducation(education, id) {
     });
 }
 
-
 function deleteEducation(educationId) {
     return UserEducation.destroy({
         where: {
@@ -28,8 +27,9 @@ function deleteEducation(educationId) {
         }
     });
 }
+
 module.exports.createUserEcucation = createUserEcucation;
 module.exports.getAllUserEducation = getAllUserEducation;
-module.exports.getEducationById=getEducationById;
+module.exports.getEducationById = getEducationById;
 module.exports.updateEducation = updateEducation;
-module.exports.deleteEducation=deleteEducation;
+module.exports.deleteEducation = deleteEducation;

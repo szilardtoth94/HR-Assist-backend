@@ -1,14 +1,10 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../../../config/sequelize').init();
 
-const Skills = sequelize.define("user_skills", {
-
+const UserSkills = sequelize.define("user_skills", {
     personalInfoId: {
         field:'personal_info_id',
         type: Sequelize.INTEGER,
-        validate: {
-            len: [0, 44]
-        }
     },
     skillsId: {
         field:'skills_id',
@@ -16,5 +12,4 @@ const Skills = sequelize.define("user_skills", {
     }
 });
 
-
-module.exports = Skills;
+module.exports = UserSkills;

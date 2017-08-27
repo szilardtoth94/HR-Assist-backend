@@ -1,4 +1,4 @@
-let Jobs = require('../models/jobModel');
+const Jobs = require('../models/jobModel');
 const Skill = require('../../skils/model/skills');
 
 function createJob(job) {
@@ -14,7 +14,7 @@ function getAllJobsWithRequirements() {
             include: [
 
                 {
-                    model:Skill
+                    model: Skill
                 }
             ]
         }
@@ -25,14 +25,6 @@ function getJobById(jobId) {
     return Jobs.findById(jobId);
 }
 
-function deleteJob(jobId) {
-    return Jobs.destroy({
-        where: {
-            id: jobId
-        }
-    });
-}
-
 function updateJob(job) {
     return Jobs.update(job, {
         where: {
@@ -41,9 +33,17 @@ function updateJob(job) {
     });
 }
 
-module.exports.allJobs = getAllJobs;
-module.exports.jobById = getJobById
+function deleteJob(jobId) {
+    return Jobs.destroy({
+        where: {
+            id: jobId
+        }
+    });
+}
+
+module.exports.getAllJobs = getAllJobs;
+module.exports.jobById = getJobById;
 module.exports.createJob = createJob;
-module.exports.deleteJob = deleteJob;
 module.exports.updateJob = updateJob;
-module.exports.getAllJobsWithRequirements=getAllJobsWithRequirements;
+module.exports.deleteJob = deleteJob;
+module.exports.getAllJobsWithRequirements = getAllJobsWithRequirements;

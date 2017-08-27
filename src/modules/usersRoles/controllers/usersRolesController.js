@@ -8,4 +8,5 @@ function getAllUserRoles() {
     return UserRoles.findAll();
 }
 
+module.exports.createUserRole = createUserRole;
 module.exports.getallUserRoles = getAllUserRoles;

@@ -27,8 +27,9 @@ function deleteUserWorkExperience(userWorkExperienceId) {
         }
     });
 }
-module.exports.createUserWorkExperience=createUserWorkExperience;
+
+module.exports.createUserWorkExperience = createUserWorkExperience;
 module.exports.getAllUserWorkExperience = getAllUserWorkExperience;
-module.exports.getUserWorkExperienceById=getUserWorkExperienceById;
-module.exports.updateUserWorkExperience=updateUserWorkExperience;
-module.exports.deleteUserWorkExperience=deleteUserWorkExperience;
+module.exports.getUserWorkExperienceById = getUserWorkExperienceById;
+module.exports.updateUserWorkExperience = updateUserWorkExperience;
+module.exports.deleteUserWorkExperience = deleteUserWorkExperience;

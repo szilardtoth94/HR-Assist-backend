@@ -5,7 +5,6 @@ const UserRoles = require('../../usersRoles/model/userRolesModel');
 const PersonalInfo = require('../../personalInfo/model/personalInfoModel');
 
 const User = sequelize.define("users", {
-
     userName: {
         field: 'username',
         type: Sequelize.STRING(45),
@@ -19,15 +18,10 @@ const User = sequelize.define("users", {
             len: [0, 44]
         }
     },
-
     lastLogin: {
         field: 'last_login',
         type: Sequelize.DATE
     }
-}, {
-    timestamp: false,
-
-
 });
 
 User.belongsTo(UserRoles, {
@@ -39,7 +33,6 @@ User.belongsTo(UserRoles, {
     onUpdate: 'cascade'
 });
 
-
 User.hasOne(PersonalInfo, {
     foreignKey: {
         name: 'usersId',
@@ -47,8 +40,8 @@ User.hasOne(PersonalInfo, {
     },
     onDelete: 'cascade',
     onUpdate: 'cascade'
-
 });
+
 PersonalInfo.belongsTo(User, {
     foreignKey: {
         name: 'usersId',
@@ -56,8 +49,6 @@ PersonalInfo.belongsTo(User, {
     },
     onDelete: 'cascade',
     onUpdate: 'cascade'
-
 });
-
 
 module.exports = User;

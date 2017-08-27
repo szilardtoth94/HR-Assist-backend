@@ -1,19 +1,7 @@
-let Skills = require('../model/skills');
-let JobRequirment = require('../../jobRequirement/model/jobRequirementModel');
-
+const Skills = require('../model/skills');
 
 function getAllSkills() {
-    // Skills.options.associate2(JobRequirment);
-    // JobRequirment.options.associate2(Skills);
-
-    return Skills.findAll(
-        // {
-        //     include: [{
-        //         model: JobRequirment,
-        //         as: 'job_requirments'
-        //     }]
-        // }
-    );
+    return Skills.findAll();
 }
 
 module.exports.getAllSkills = getAllSkills;

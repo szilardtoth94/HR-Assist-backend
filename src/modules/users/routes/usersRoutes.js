@@ -1,14 +1,14 @@
 const express = require('express');
-const jobRequirementRouter = express.Router();
-const jobRequirementCtrl = require('../controller/jobRequirementController');
+const userRouter = express.Router();
+const userCtrl = require('../controllers/usersController');
 
-let router = function (connection) {
-    jobRequirementRouter.route('/')
+const router = function (connection) {
+    userRouter.route('/')
         .get(function (req, res) {
-            jobRequirementCtrl.getAllJobRequirment()
+            userCtrl.getallUser()
                 .then((result) => {
                     res.json({
-                        success: true,
+                        succes: true,
                         data: result
                     });
                 })
@@ -21,7 +21,7 @@ let router = function (connection) {
                 });
         });
 
-    return jobRequirementRouter;
+    return userRouter;
 };
 
 module.exports = router;

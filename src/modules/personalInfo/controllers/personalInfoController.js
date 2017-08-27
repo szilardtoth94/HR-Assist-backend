@@ -48,12 +48,11 @@ function getAllPersonalInfoById(id) {
                 as: 'workExperience'
             },
             {
-                through: {
-                    attributes: []
-                },
+                // through: {
+                //     attributes: []
+                // },
                 model: Skills,
                 as: 'skills',
-                // attributes: { exclude: ['user_skills'] }
             },
             {
                 model: User,
@@ -65,16 +64,15 @@ function getAllPersonalInfoById(id) {
 }
 
 function editPersonalInfo(persInf, userId) {
-
     return PersonalInfo.update(persInf,
         {
             where: {
                 id: userId
             },
             include: [{
-                    model: User,
-                    as: 'user'
-                }]
+                model: User,
+                as: 'user'
+            }]
 
 
         });
@@ -89,7 +87,6 @@ function deletePersonalInfo(userId) {
 
     });
 }
-
 
 module.exports.createPersonalInfo = createPersonalInfo;
 module.exports.getAllPersonalInfo = getAllPersonalInfo;

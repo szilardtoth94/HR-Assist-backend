@@ -1,10 +1,8 @@
 const express = require('express');
 const userWorkExperienceRouter = express.Router();
-
 const userWorkExperienceCtrl = require('../controllers/userWorkExperienceController');
 
-let router = function (connection) {
-
+const router = function (connection) {
     userWorkExperienceRouter.route('/')
         .get(function (req, res) {
             userWorkExperienceCtrl.getAllUserWorkExperience()
@@ -37,10 +35,8 @@ let router = function (connection) {
                         success: false,
                         data: error
                     })
-
                 })
         });
-
 
     userWorkExperienceRouter.route('/:id')
         .get(function (req, res) {
@@ -60,25 +56,23 @@ let router = function (connection) {
                     })
                 })
         })
-    .put(function (req, res) {
-        let workExperience =req.body;
-        userWorkExperienceCtrl.updateUserWorkExperience(workExperience,req.params.id)
-            .then(result => {
-                res.json({
-                    success: true,
-                    data: result
+        .put(function (req, res) {
+            let workExperience = req.body;
+            userWorkExperienceCtrl.updateUserWorkExperience(workExperience, req.params.id)
+                .then(result => {
+                    res.json({
+                        success: true,
+                        data: result
+                    })
                 })
-            })
-            .catch(function (error) {
-                res.status(400);
-                res.json({
-                    success: false,
-                    data: error
+                .catch(function (error) {
+                    res.status(400);
+                    res.json({
+                        success: false,
+                        data: error
+                    })
                 })
-
-            })
-
-    })
+        })
         .delete(function (req, res) {
             let userWorkExperienceId = req.params.id;
             userWorkExperienceCtrl.deleteUserWorkExperience(userWorkExperienceId)
@@ -94,11 +88,8 @@ let router = function (connection) {
                         success: false,
                         data: error
                     })
-
                 })
-
         });
-
 
     return userWorkExperienceRouter;
 };

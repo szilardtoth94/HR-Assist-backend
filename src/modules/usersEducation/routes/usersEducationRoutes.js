@@ -1,10 +1,8 @@
 const express = require('express');
 const userEducationRouter = express.Router();
-
 const userEducationCtrl = require('../controllers/usersEducationController');
 
-let router = function (connection) {
-
+const router = function (connection) {
     userEducationRouter.route('/')
         .get(function (req, res) {
             userEducationCtrl.getAllUserEducation()
@@ -37,13 +35,13 @@ let router = function (connection) {
                         success: false,
                         data: error
                     })
-
                 })
         });
+
     userEducationRouter.route('/:id')
         .put(function (req, res) {
-            let education =req.body;
-            userEducationCtrl.updateEducation(education,req.params.id)
+            let education = req.body;
+            userEducationCtrl.updateEducation(education, req.params.id)
                 .then(result => {
                     res.json({
                         success: true,
@@ -56,9 +54,7 @@ let router = function (connection) {
                         success: false,
                         data: error
                     })
-
                 })
-
         })
         .get(function (req, res) {
             let educationId = req.params.id;
@@ -92,11 +88,8 @@ let router = function (connection) {
                         success: false,
                         data: error
                     })
-
                 })
-
         });
-
 
     return userEducationRouter;
 };

@@ -1,10 +1,8 @@
 const express = require('express');
 const skillsRouter = express.Router();
-
 const skillsCtrl = require('../controller/skillscontroller');
 
-let router = function (connection) {
-
+const router = function (connection) {
     skillsRouter.route('/')
         .get(function (req, res) {
             skillsCtrl.getAllSkills()
@@ -22,7 +20,6 @@ let router = function (connection) {
                     });
                 });
         });
-
     return skillsRouter;
 };
 

@@ -1,11 +1,10 @@
 'use strict';
 let Skills = require('../../skils/model/skills');
-let JobRequirment = require('../model/jobRequirementModel');
+let JobRequirement = require('../model/jobRequirementModel');
 let Jobs = require('../../jobs/models/jobModel');
+function getAllJobRequirement() {
+    return JobRequirement.findAll(
 
-
-function getAllJobRequirment() {
-    return JobRequirment.findAll(
         {
             include: [{
                 model: Jobs
@@ -16,4 +15,4 @@ function getAllJobRequirment() {
     );
 }
 
-module.exports.getAllJobRequirment = getAllJobRequirment;
+module.exports.getAllJobRequirment = getAllJobRequirement;
