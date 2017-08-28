@@ -5,10 +5,10 @@ function createJobSkills(jobSkill) {
     return JobRequirement.create(jobSkill);
 }
 
-function getJobSkillsByPersId(userId) {
+function getJobSkillsByPersId(jobId) {
     return JobRequirement.findAll({
         where: {
-            jobId: userId
+            jobId: jobId
         }
     });
 }

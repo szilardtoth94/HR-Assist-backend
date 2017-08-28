@@ -1,11 +1,29 @@
 const express = require('express');
-const userRouter = express.Router();
-const userCtrl = require('../controllers/usersController');
+const jobApplyRouter = express.Router();
+const jobApplyCtrl = require('../controller/jobApplyController');
 
 const router = function (connection) {
-    userRouter.route('/')
+    jobApplyRouter.route('/')
+        .post(function (req, res) {
+            jobApplyCtrl.createJobApply(req.body)
+                .then((result) => {
+                    res.json({
+                        success: true,
+                        data: result
+                    });
+                })
+                .catch(function (error) {
+                    res.status(400);
+                    res.json({
+                        success: false,
+                        data: error.toString()
+                    });
+                });
+        });
+
+    jobApplyRouter.route('/:id')
         .get(function (req, res) {
-            userCtrl.getallUser()
+            jobApplyCtrl.getJobApplyById(req.params.id)
                 .then((result) => {
                     res.json({
                         success: true,
@@ -20,8 +38,9 @@ const router = function (connection) {
                     });
                 });
         })
-        .post(function (req, res) {
-            userCtrl.logIn(req.body.userName,req.body.password)
+
+        .delete(function (req, res) {
+            jobApplyCtrl.deleteJobId(req.params.id)
                 .then((result) => {
                     res.json({
                         success: true,
@@ -37,25 +56,8 @@ const router = function (connection) {
                 });
         });
 
-    userRouter.route('/:id')
-        .put(function (req, res) {
-            userCtrl.changePassword(req.params.id,req.body.oldPassword,req.body.newPassword)
-                .then((result) => {
-                    res.json({
-                        success: true,
-                        data: result
-                    });
-                })
-                .catch(function (error) {
-                    res.status(400);
-                    res.json({
-                        success: false,
-                        data: error.toString()
-                    });
-                });
-        });
 
-    return userRouter;
+    return jobApplyRouter;
 };
 
 module.exports = router;

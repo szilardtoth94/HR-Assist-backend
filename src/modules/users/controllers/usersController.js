@@ -18,5 +18,28 @@ function logIn(username, password) {
     })
 }
 
+function changePassword(userId, oldPassword, password) {
+    return new Promise((resolve, reject) => {
+        User.findOne({
+                where: {
+                    id: userId,
+                    password: oldPassword
+                }
+            }
+        ).then((data) => {
+            if (null !== data) {
+                User.update({"password": password}, {
+                    where: {
+                        id: userId
+                    }
+                }).then((data) => resolve(data))
+                    .catch((err) => reject(err));
+            } else reject(new Error("wrong password"));
+        })
+            .catch((err) => reject(err));
+    });
+}
+
 module.exports.getallUser = getAllUser;
 module.exports.logIn = logIn;
+module.exports.changePassword = changePassword;

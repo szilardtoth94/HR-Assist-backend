@@ -23,6 +23,10 @@ const PersonalInfo = sequelize.define("personal_info", {
     description: {
         field: 'description',
         type: Sequelize.TEXT,
+    },
+    img: {
+        field: 'imgurl',
+        type: Sequelize.STRING(255),
     }
 });
 

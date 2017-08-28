@@ -6,7 +6,8 @@ const userRolesRouter = require('../modules/usersRoles/routes/usersRolesRoutes')
 const personalInfoRoutes = require('../modules/personalInfo/routes/personalInfoRoutes');
 const userEducationRoutes = require('../modules/usersEducation/routes/usersEducationRoutes');
 const userWorkExperienceRouter = require('../modules/userWorkExperience/routes/userWorkExperienceRoutes');
-const userSkillsRouter = require('../modules/userSkils/routes/usee.skills.routes');
+const userSkillsRouter = require('../modules/userSkils/routes/user.skills.routes');
+const jobApplyRouter =require('../modules/jobApply/routes/jobApplyRoutes')
 
 function initRoutes(app) {
     // app.use(function (req, res, next) {
@@ -28,6 +29,7 @@ function initRoutes(app) {
     app.use('/api/education', userEducationRoutes());
     app.use('/api/work', userWorkExperienceRouter());
     app.use('/api/userskills', userSkillsRouter());
+    app.use('/api/apply',jobApplyRouter());
 }
 
 module.exports.init = initRoutes;
