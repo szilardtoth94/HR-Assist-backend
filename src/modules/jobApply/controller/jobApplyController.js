@@ -1,14 +1,18 @@
 const JobApply = require('../model/jobApplyModel');
+const Users = require('../../users/model/userModel')
 
 function createJobApply(jobApply) {
     return JobApply.create(jobApply);
 }
 
-function getJobApplyById(jobId) {
+function getUserApplyById(jobId) {
     return JobApply.findAll({
         where: {
             jobId: jobId
-        }
+        },
+        include: Users
+
+
     })
 }
 
@@ -21,5 +25,5 @@ function deleteJobId(jobApplyId) {
 }
 
 module.exports.createJobApply = createJobApply;
-module.exports.getJobApplyById = getJobApplyById;
+module.exports.getUserApplyById = getUserApplyById;
 module.exports.deleteJobId = deleteJobId;

@@ -23,7 +23,7 @@ const router = function (connection) {
 
     jobApplyRouter.route('/:id')
         .get(function (req, res) {
-            jobApplyCtrl.getJobApplyById(req.params.id)
+            jobApplyCtrl.getUserApplyById(req.params.id)
                 .then((result) => {
                     res.json({
                         success: true,

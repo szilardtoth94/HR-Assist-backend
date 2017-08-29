@@ -5,14 +5,28 @@ const WorkExperience = require('../../userWorkExperience/model/userWorExperience
 const Skills = require('../../skils/model/skills');
 
 function createPersonalInfo(persInf) {
-    return PersonalInfo.create(persInf,
-        {
-            include: [
-                {
-                    model: User,
-                    as: 'user'
-                }]
-        });
+    return new Promise((resolve, reject) => {
+        User.findOne({
+                where: {
+                    username: persInf.user.userName
+                }
+            }
+        ).then((data) => {
+            if (null === data) {
+                PersonalInfo.create(persInf,
+                    {
+                        include: [
+                            {
+                                model: User,
+                                as: 'user'
+                            }]
+
+                    }).then((data) => resolve(data))
+                    .catch((err) => reject(err));
+            } else reject(new Error("exist"));
+        })
+            .catch((err) => reject(err));
+    });
 }
 
 function getAllPersonalInfo() {

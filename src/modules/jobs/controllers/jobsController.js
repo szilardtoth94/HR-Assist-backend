@@ -12,7 +12,6 @@ function getAllJobs() {
 function getJobById(jobId) {
     return Jobs.findById(jobId,{
         include: [
-
             {
                 model: Skill
             }
