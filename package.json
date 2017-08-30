@@ -9,6 +9,7 @@
   "author": "szilard.toth",
   "license": "ISC",
   "dependencies": {
+    "atob": "^2.0.3",
     "body-parser": "^1.17.2",
     "express": "^4.15.4",
     "mysql": "^2.14.1",
