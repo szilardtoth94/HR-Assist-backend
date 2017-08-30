@@ -22,7 +22,7 @@ let router = function (role) {
         })
         .post(function (req, res) {
             let job = req.body;
-            if (role) {
+            if (role > 1) {
                 jobsCtrl.createJob(job)
                     .then((result) => {
                         res.json({
@@ -67,39 +67,54 @@ let router = function (role) {
         })
         .put(function (req, res) {
             let job = req.body;
-            jobsCtrl.updateJob(req.params.id, job)
-                .then(result => {
-                    res.json({
-                        success: true,
-                        data: result
+            if (role > 1) {
+                jobsCtrl.updateJob(req.params.id, job)
+                    .then(result => {
+                        res.json({
+                            success: true,
+                            data: result
+                        })
                     })
-                })
-                .catch(function (error) {
-                    res.status(400);
-                    res.json({
-                        success: false,
-                        data: error
+                    .catch(function (error) {
+                        res.status(400);
+                        res.json({
+                            success: false,
+                            data: error
+                        })
+
                     })
-
-                })
-
+            } else {
+                res.status(403);
+                res.json({
+                    success: false,
+                    data: "Forbidden"
+                });
+            }
         })
         .delete(function (req, res) {
             let jobId = req.params.id;
-            jobsCtrl.deleteJob(jobId)
-                .then(result => {
-                    res.json({
-                        success: true,
-                        data: result
+            if (role > 1) {
+                jobsCtrl.deleteJob(jobId)
+                    .then(result => {
+                        res.json({
+                            success: true,
+                            data: result
+                        })
                     })
-                })
-                .catch(function (error) {
-                    res.status(400);
-                    res.json({
-                        success: false,
-                        data: error
+                    .catch(function (error) {
+                        res.status(400);
+                        res.json({
+                            success: false,
+                            data: error
+                        })
                     })
-                })
+            } else {
+                res.status(403);
+                res.json({
+                    success: false,
+                    data: "Forbidden"
+                });
+            }
         });
 
     return jobsRouter;

@@ -14,7 +14,8 @@
     "express": "^4.15.4",
     "mysql": "^2.14.1",
     "mysql2": "^1.4.2",
-    "sequelize": "^4.7.5"
+    "sequelize": "^4.7.5",
+    "swagger-jsdoc": "^1.9.7"
   },
   "devDependencies": {
     "nodemon": "^1.11.0"

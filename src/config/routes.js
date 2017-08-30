@@ -10,8 +10,24 @@ const UserSkillsRouter = require('../modules/userSkils/routes/user.skills.routes
 const JobApplyRouter = require('../modules/jobApply/routes/jobApplyRoutes');
 const LoginRouter = require('../modules/login/routes/loginRoutes');
 const loginController = require("../modules/login/controller/login");
-
+const fs = require('fs');
+const path = require('path');
 let atob = require('atob');
+
+// function getRouteFilePaths(app) {
+//     let routePaths = [];
+//     const appsPath = app.get('root') + '/app/';
+//
+//     fs.readdirSync(appsPath).filter(function (folder) {
+//         let routesPath = path.join(appsPath, folder, 'routes');
+//         if (fs.statSync(routesPath).isDirectory()) {
+//             fs.readdirSync(routesPath).filter(function (route) {
+//                 routePaths.push(path.join(routesPath, route));
+//             });
+//         }
+//     });
+//     return routePaths;
+// }
 
 function initRoutes(app) {
     let auth;
@@ -20,7 +36,7 @@ function initRoutes(app) {
     app.use('/login', LoginRouter());
 
     app.use(function (req, res, next) {
-         next();
+        next();
         // if (req.headers && req.headers.authorization) {
         //     auth = (atob(req.headers.authorization));
         //     next()
@@ -32,7 +48,7 @@ function initRoutes(app) {
     });
 
     function checkUser(req, res, next) {
-         next();
+        next();
         // loginController.logIn(auth.split(':')[0], auth.split(':')[1])
         //     .then((result) => {
         //             if (result) {
@@ -67,3 +83,4 @@ function initRoutes(app) {
 }
 
 module.exports.init = initRoutes;
+// module.exports.initPath = getRouteFilePaths;

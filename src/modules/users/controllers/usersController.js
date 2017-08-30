@@ -9,15 +9,6 @@ function getAllUser() {
     });
 }
 
-function logIn(username, password) {
-    return User.findOne({
-        where: {
-            userName: username,
-            password: password
-        }
-    })
-}
-
 function changePassword(userId, oldPassword, password) {
     return new Promise((resolve, reject) => {
         User.findOne({
@@ -41,5 +32,4 @@ function changePassword(userId, oldPassword, password) {
 }
 
 module.exports.getallUser = getAllUser;
-module.exports.logIn = logIn;
 module.exports.changePassword = changePassword;
