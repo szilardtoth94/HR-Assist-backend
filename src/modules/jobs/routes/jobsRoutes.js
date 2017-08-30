@@ -2,7 +2,7 @@ const express = require('express');
 const jobsRouter = express.Router();
 const jobsCtrl = require('../controllers/jobsController');
 
-let router = function (connection) {
+let router = function (role) {
     jobsRouter.route('/')
         .get(function (req, res) {
             jobsCtrl.getAllJobs()
@@ -22,22 +22,29 @@ let router = function (connection) {
         })
         .post(function (req, res) {
             let job = req.body;
-            console.log(req.body);
-            jobsCtrl.createJob(job)
-                .then((result) => {
-                    res.json({
-                        success: true,
-                        data: result
+            if (role) {
+                jobsCtrl.createJob(job)
+                    .then((result) => {
+                        res.json({
+                            success: true,
+                            data: result
+                        })
                     })
-                })
-                .catch(function (error) {
-                    res.status(400);
-                    res.json({
-                        success: false,
-                        data: error
-                    })
+                    .catch(function (error) {
+                        res.status(400);
+                        res.json({
+                            success: false,
+                            data: error
+                        })
 
-                })
+                    })
+            } else {
+                res.status(403);
+                res.json({
+                    success: false,
+                    data: "Forbidden"
+                });
+            }
         });
 
     jobsRouter.route('/:id')
@@ -60,7 +67,7 @@ let router = function (connection) {
         })
         .put(function (req, res) {
             let job = req.body;
-            jobsCtrl.updateJob(req.params.id,job)
+            jobsCtrl.updateJob(req.params.id, job)
                 .then(result => {
                     res.json({
                         success: true,

@@ -1,4 +1,4 @@
-var bodyParser = require('body-parser');
+let bodyParser = require('body-parser');
 
 function initExpress(app) {
 
@@ -8,7 +8,6 @@ function initExpress(app) {
         res.header("Access-Control-Allow-Origin", "*" );
         res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
         res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
-        req.header("Access-Control-Allow-Credentials: true")
          next();
     });
 }

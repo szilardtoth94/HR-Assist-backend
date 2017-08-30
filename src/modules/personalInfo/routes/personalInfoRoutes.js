@@ -3,34 +3,39 @@ const persInfoRouter = express.Router();
 
 const persInfoCtrl = require('../controllers/personalInfoController');
 
-let router = function (connection) {
-
+let router = function (role) {
     persInfoRouter.route('/')
         .post(function (req, res) {
             let job = req.body;
             console.log(job);
-            persInfoCtrl.createPersonalInfo(job)
-                .then((result) => {
-                    res.header("Access-Control-Allow-Origin", "*");
-                    res.json({
-                        success: true,
-                        data: result
+            if (role > 1) {
+                persInfoCtrl.createPersonalInfo(job)
+                    .then((result) => {
+                        res.json({
+                            success: true,
+                            data: result
+                        });
+                    })
+                    .catch(function (error) {
+                        res.status(400);
+                        res.json({
+                            success: false,
+                            data: error.toString()
+                        });
                     });
-                })
-                .catch(function (error) {
-                    res.status(400);
-                    res.json({
-                        success: false,
-                        data: error.toString()
-                    });
+            }
+            else {
+                res.status(403);
+                res.json({
+                    success: false,
+                    data: "Forbidden"
                 });
+            }
         });
-
     persInfoRouter.route('/')
         .get(function (req, res) {
             persInfoCtrl.getAllPersonalInfo()
                 .then((result) => {
-                    //res.header("Access-Control-Allow-Origin", "*");
                     res.json({
                         success: true,
                         data: result
@@ -86,41 +91,56 @@ let router = function (connection) {
     persInfoRouter.route('/:id')
         .delete(function (req, res) {
             let userId = req.params.id;
-            persInfoCtrl.deletePersonalInfo(userId)
-                .then(result => {
-                    res.json({
-                        success: true,
-                        data: result
+            if (role > 1) {
+                persInfoCtrl.deletePersonalInfo(userId)
+                    .then(result => {
+                        res.json({
+                            success: true,
+                            data: result
+                        })
                     })
-                })
-                .catch(function (error) {
-                    res.status(400);
-                    res.json({
-                        success: false,
-                        data: error
+                    .catch(function (error) {
+                        res.status(400);
+                        res.json({
+                            success: false,
+                            data: error
+                        })
+
                     })
-
-                })
-
+            } else {
+                res.status(403);
+                res.json({
+                    success: false,
+                    data: "Forbidden"
+                });
+            }
         })
         .put(function (req, res) {
             let userId = req.params.id;
-            let user =req.body;
-            persInfoCtrl.editPersonalInfo(user,userId)
-                .then(result => {
-                    res.json({
-                        success: true,
-                        data: result
+            let user = req.body;
+            if (role > 1) {
+                persInfoCtrl.editPersonalInfo(user, userId)
+                    .then(result => {
+                        res.json({
+                            success: true,
+                            data: result
+                        })
                     })
-                })
-                .catch(function (error) {
-                    res.status(400);
-                    res.json({
-                        success: false,
-                        data: error
-                    })
+                    .catch(function (error) {
+                        res.status(400);
+                        res.json({
+                            success: false,
+                            data: error
+                        })
 
-                })
+                    })
+            } else {
+                res.status(403);
+                res.json({
+                    success: false,
+                    data: "Forbidden"
+                });
+            }
 
         });
     return persInfoRouter;
