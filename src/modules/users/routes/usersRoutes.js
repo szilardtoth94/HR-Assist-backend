@@ -23,7 +23,7 @@ const router = function (connection) {
 
     userRouter.route('/:id')
         .put(function (req, res) {
-            userCtrl.changePassword(req.params.id,req.body.oldPassword,req.body.newPassword)
+            userCtrl.changePassword(req.params.id, req.body.oldPassword, req.body.newPassword)
                 .then((result) => {
                     res.json({
                         success: true,

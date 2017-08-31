@@ -56,7 +56,6 @@ const router = function (connection) {
                 });
         });
 
-
     return jobApplyRouter;
 };
 

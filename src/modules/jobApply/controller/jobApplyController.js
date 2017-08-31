@@ -11,11 +11,8 @@ function getUserApplyById(jobId) {
             jobId: jobId
         },
         include: Users
-
-
     })
 }
-
 function deleteJobId(jobApplyId) {
     return JobApply.destroy({
         where: {

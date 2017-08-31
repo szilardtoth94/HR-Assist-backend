@@ -38,7 +38,6 @@ const router = function (connection) {
                 });
         });
 
-
     userSkillsRouter.route('/:id')
         .get(function (req, res) {
             userSkillsCtrl.getUserSkillsByPersId(req.params.id)
@@ -56,6 +55,7 @@ const router = function (connection) {
                     });
                 });
         })
+
         .delete(function (req, res) {
             console.log(req);
             userSkillsCtrl.deleteUserSkill(req.params.id)
@@ -73,6 +73,7 @@ const router = function (connection) {
                     });
                 });
         });
+
     return userSkillsRouter;
 };
 

@@ -5,11 +5,11 @@ const loginCtrl = require('../controller/login');
 const router = function () {
     loginRouter.route('/')
         .post(function (req, res) {
-            loginCtrl.logIn(req.body.userName,req.body.password)
+            loginCtrl.logIn(req.body.userName, req.body.password)
                 .then((result) => {
                     res.json({
                         success: true,
-                        data: result
+                        data: result,
                     });
                 })
                 .catch(function (error) {
@@ -20,8 +20,6 @@ const router = function () {
                     });
                 });
         });
-
-
     return loginRouter;
 };
 

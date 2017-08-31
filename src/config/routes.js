@@ -15,9 +15,7 @@ const atob = require('atob');
 function initRoutes(app) {
     let auth;
     let role = 3;
-
     app.use('/login', LoginRouter());
-
     app.use(function (req, res, next) {
         if (req.method === "OPTIONS") {
             next();
@@ -45,7 +43,6 @@ function initRoutes(app) {
                         console.log("unsucces");
                         res.send("error")
                     });
-
             }
             else {
                 res.status(403);
@@ -53,7 +50,6 @@ function initRoutes(app) {
             }
         }
     });
-
     app.use('/api/jobs', JobsRouter(role));
     app.use('/api/users', UserRouter(role));
     app.use('/api/userroles', UserRolesRouter(role));

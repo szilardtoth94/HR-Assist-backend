@@ -11,20 +11,21 @@ function createPersonalInfo(persInf) {
                     username: persInf.user.userName
                 }
             }
-        ).then((data) => {
-            if (null === data) {
-                PersonalInfo.create(persInf,
-                    {
-                        include: [
-                            {
-                                model: User,
-                                as: 'user'
-                            }]
+        )
+            .then((data) => {
+                if (null === data) {
+                    PersonalInfo.create(persInf,
+                        {
+                            include: [
+                                {
+                                    model: User,
+                                    as: 'user'
+                                }]
 
-                    }).then((data) => resolve(data))
-                    .catch((err) => reject(err));
-            } else reject(new Error("exist"));
-        })
+                        }).then((data) => resolve(data))
+                        .catch((err) => reject(err));
+                } else reject(new Error("exist"));
+            })
             .catch((err) => reject(err));
     });
 }
@@ -94,7 +95,6 @@ function editPersonalInfo(persInf, userId) {
 
 function deletePersonalInfo(userId) {
     return User.destroy({
-
         where: {
             id: userId,
         },

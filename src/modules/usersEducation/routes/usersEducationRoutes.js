@@ -20,6 +20,7 @@ const router = function (connection) {
                     });
                 });
         })
+
         .post(function (req, res) {
             let userEducation = req.body;
             userEducationCtrl.createUserEcucation(userEducation)
@@ -56,6 +57,7 @@ const router = function (connection) {
                     })
                 })
         })
+
         .get(function (req, res) {
             let educationId = req.params.id;
             userEducationCtrl.getEducationById(educationId)
@@ -73,6 +75,7 @@ const router = function (connection) {
                     })
                 })
         })
+
         .delete(function (req, res) {
             let educationId = req.params.id;
             userEducationCtrl.deleteEducation(educationId)

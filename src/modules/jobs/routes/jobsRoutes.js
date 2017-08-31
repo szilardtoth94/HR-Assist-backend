@@ -20,6 +20,7 @@ let router = function (role) {
                     });
                 });
         })
+
         .post(function (req, res) {
             let job = req.body;
             if (role > 1) {
@@ -65,6 +66,7 @@ let router = function (role) {
                     })
                 })
         })
+
         .put(function (req, res) {
             let job = req.body;
             if (role > 1) {
@@ -91,6 +93,7 @@ let router = function (role) {
                 });
             }
         })
+
         .delete(function (req, res) {
             let jobId = req.params.id;
             if (role > 1) {

@@ -1,6 +1,5 @@
 const express = require('express');
 const persInfoRouter = express.Router();
-
 const persInfoCtrl = require('../controllers/personalInfoController');
 
 let router = function (role) {
@@ -32,6 +31,7 @@ let router = function (role) {
                 });
             }
         });
+
     persInfoRouter.route('/')
         .get(function (req, res) {
             persInfoCtrl.getAllPersonalInfo()
@@ -117,6 +117,7 @@ let router = function (role) {
                 });
             }
         })
+
         .put(function (req, res) {
             let userId = req.params.id;
             let user = req.body;
@@ -145,8 +146,8 @@ let router = function (role) {
             }
 
         });
-    return persInfoRouter;
 
+    return persInfoRouter;
 };
 
 module.exports = router;

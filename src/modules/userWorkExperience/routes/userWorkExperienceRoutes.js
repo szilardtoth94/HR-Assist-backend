@@ -20,6 +20,7 @@ const router = function (connection) {
                     });
                 });
         })
+
         .post(function (req, res) {
             let userWorkExperience = req.body;
             userWorkExperienceCtrl.createUserWorkExperience(userWorkExperience)
@@ -56,6 +57,7 @@ const router = function (connection) {
                     })
                 })
         })
+
         .put(function (req, res) {
             let workExperience = req.body;
             userWorkExperienceCtrl.updateUserWorkExperience(workExperience, req.params.id)

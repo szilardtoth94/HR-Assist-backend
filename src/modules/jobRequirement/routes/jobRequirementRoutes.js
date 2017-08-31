@@ -20,6 +20,7 @@ let router = function (role) {
                     });
                 });
         })
+
         .post(function (req, res) {
             if (role > 1) {
                 jobRequirementCtrl.createJobSkills(req.body)
@@ -62,6 +63,7 @@ let router = function (role) {
                     });
                 });
         })
+
         .delete(function (req, res) {
             if (role > 1) {
                 jobRequirementCtrl.deleteJobSkill(req.params.id)
