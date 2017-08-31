@@ -2,7 +2,7 @@ const express = require('express');
 const loginRouter = express.Router();
 const loginCtrl = require('../controller/login');
 
-const router = function (connection) {
+const router = function () {
     loginRouter.route('/')
         .post(function (req, res) {
             loginCtrl.logIn(req.body.userName,req.body.password)

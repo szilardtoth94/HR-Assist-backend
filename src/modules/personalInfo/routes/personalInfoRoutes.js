@@ -70,8 +70,10 @@ let router = function (role) {
         });
 
     persInfoRouter.route('/all/:id')
+
         .get(function (req, res) {
             let persInfId = req.params.id;
+            console.log((role));
             persInfoCtrl.getAllPersonalInfoById(persInfId)
                 .then((result) => {
                     res.json({
