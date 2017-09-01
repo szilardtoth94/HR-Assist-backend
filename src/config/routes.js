@@ -14,7 +14,7 @@ const atob = require('atob');
 
 function initRoutes(app) {
     let auth;
-    let role = 3;
+    let role = 1;
     app.use('/login', LoginRouter());
     app.use(function (req, res, next) {
         if (req.method === "OPTIONS") {
